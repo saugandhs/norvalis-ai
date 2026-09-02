@@ -1,0 +1,131 @@
+
+/* =========================
+   RESET
+========================= */
+
+
+:root {
+
+    --sidebar-width: 360px;
+
+    --content-width: 800px;
+
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+
+
+body.theme-dark {
+
+    --bg-primary: #0b1020;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1b2437;
+    --bg-input: #3a304e;
+
+    --font-color-primary: white;
+    --font-color-secondary: #f1eff9;
+
+    --chat-input-bg: #1c2a46;
+    --chat-container-bg:
+        radial-gradient(
+            circle at top right,
+            rgba(99,102,241,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(99,102,241,.08),
+            transparent 40%
+        ),
+        var(--bg-primary);
+
+    --chat-input-box-shadow: 0 -12px 30px rgba(0,0,0,.25);
+    --chat-input-box-shadow-2: 0 8px 30px rgba(0, 0, 0, 0.18);
+
+    --card-bg: #172033;
+    --sidebar-bg: #0b1020;
+
+    --accent: #6366f1;
+    --accent-hover: #7c7ff7;
+
+    --chat-item-bg-active: rgba(99,102,241,.15);
+    --chat-item-bg-hover: #1b2437;
+
+    --delete-chat-text: #f87171;
+
+    --newchat-gradient-start: #4f46e5;
+    --newchat-gradient-end: #7c3aed;
+
+    --usermsg-gradient-start: #6366f1;
+    --usermsg-gradient-end: #8b5cf6;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+
+    --border: rgba(255,255,255,.06);
+
+}
+
+
+body.theme-light {
+
+
+    --bg-primary: #fafafa;
+    --bg-secondary: #ffffff;
+    --bg-sidebar: #f8fafc;
+
+    --border: #e5e7eb;
+
+    --font-color-primary: #111827;
+    --font-color-secondary: #6b7280;
+
+    --accent: #6366f1;
+
+    /*
+    --bg-primary: #ffffff;
+    --bg-secondary: #f1eff9;
+
+
+
+    --border: rgba(0, 0, 0, 0.2);
+
+    --accent: #6366f1;
+    --font-color-primary: black;
+    --font-color-secondary: #111827;
+
+    */
+
+
+    --bg-tertiary: #0b1020;
+
+    --bg-input: #f2f1f6;
+
+    --chat-input-bg: #ffffff;
+    --chat-container-bg: #ffffff;
+
+    --chat-input-box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+
+    --card-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    color: black;
+
+    --accent: #6366f1;
+    --accent-hover: #7c7ff7;
+
+    --chat-item-bg-active: #f2ecfa;
+    --chat-item-bg-hover: #f7eeff;
+
+    --delete-chat-text: #d72121;
+
+    --newchat-gradient-start: #4f46e5;
+    --newchat-gradient-end: #7c3aed;
+
+    --usermsg-gradient-start: #6366f1;
+    --usermsg-gradient-end: #8b5cf6;
+
+    --text-primary: #111827;
+    --text-secondary: #64748b;
+
+
+}

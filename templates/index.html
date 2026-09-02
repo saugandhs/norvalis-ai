@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norvalis AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Markdown Renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Code Syntax Highlighter -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+            
+            <div id="logoHome" class="logo">
+                <div class="logo-icon">🤖</div>
+
+                <div>
+                    <h2>Norvalis AI</h2>
+                </div>
+            </div>
+
+            <div class="new-chat-btn-container">
+                <button id="newChatBtn" class="new-chat-btn">
+                    + New Chat
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input
+                    type="text"
+                    placeholder="Search chats..."
+                >
+            </div>
+
+            <div class="pinned-chats">
+
+
+
+                
+                
+
+            </div>
+
+            <div id="chatHistory" class="chat-history">
+
+                <!-- <h4>Recents</h4> -->
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="user-card">
+
+                <div class="avatar">
+                    N
+                </div>
+
+                <span>Norvalis</span>
+
+                <button id="settingsBtn" class="settings-btn">
+                    ⚙
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="chat-container">
+
+
+        <header id="chatHeader" class="chat-header">
+
+            <div class="chat-header-content">
+                <div class="chat-info">
+                    <div class="chat-title-row">
+
+                        <h1 id="chatTitle">
+                            New Chat
+                        </h1>
+
+                        <button id="renameHeaderBtn">
+                            ✏️
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button>Share</button>
+                    
+                    <div class="export-container">
+
+                        <button id="exportMenuBtn">
+                            Export ▼
+                        </button>
+
+                        <div id="exportMenu" class="export-menu">
+
+                            <button id="exportPdfBtn">
+                                <span class="menu-icon">📝</span>
+                                PDF
+                            </button>
+
+                            <button id="exportMdBtn">
+                                <span class="menu-icon">📝</span>
+                                Markdown
+                            </button>
+                            
+                            <button id="exportTxtBtn">
+                                <span class="menu-icon">📄</span>
+                                TXT
+                            </button>
+
+                            <button id="exportHtmlBtn">
+                                <span class="menu-icon">📝</span>
+                                HTML
+                            </button>
+
+                        </div>
+                        <div id="toast" class="toast">
+                            Chat exported
+                        </div>
+
+                    </div>
+
+                    <button id="deleteChatBtn">Delete</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-content">
+            <section id="messages" class="messages">
+
+                <div class="messages-inner">
+                    <div id="emptyState" class="empty-state">
+                        <h2>How can I help today?</h2>
+                        <!--
+                        <h1>Norvalis AI</h1>
+                        <p>What can I help you with today?</p>
+                        -->
+
+                        <div class="suggestion-grid">
+                            <button class="suggestion-btn">
+                                🐍 Learn Python
+                            </button>
+
+                            <button class="suggestion-btn">
+                                🌐 Build a Website
+                            </button>
+
+                            <button class="suggestion-btn">
+                                💻 Explain Code
+                            </button>
+
+                            <button class="suggestion-btn">
+                                📚 Summarize a Topic
+                            </button>
+                        </div>
+                    </div>
+                
+
+                    <div id="chatMessages">
+                        
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+        <footer class="chat-input-container">
+
+            <div class="chat-input">
+
+                <textarea
+                    id="messageInput"
+                    type="text"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                    spellcheck="false"
+                ></textarea>
+
+                <button class="send-btn" id="sendBtn">
+                    ➤
+                </button>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<div id="settingsModal" class="settings-modal">
+
+    <div class="settings-content">
+
+        <div class="settings-header">
+
+            <h2>Settings</h2>
+
+            <button id="closeSettingsBtn">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="settings-section">
+
+            <h3>Theme</h3>
+
+            <button id="themeToggleBtn">
+                🌙 Dark Mode
+            </button>
+
+        </div>
+
+        <div class="settings-section">
+
+            <h3>Font Size</h3>
+
+            <div class="font-controls">
+
+                <button id="fontDecreaseBtn">
+                    −
+                </button>
+
+                <span id="fontSizeValue">
+                    100%
+                </span>
+
+                <button id="fontIncreaseBtn">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="settings-section">
+
+            <h3>About</h3>
+
+            <p>
+                Norvalis AI
+                <br>
+                Version 1.0
+                <br>
+                Built with Flask, Gemini,
+                HTML, CSS and JavaScript.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="deleteModal" class="modal-overlay">
+
+    <div class="confirm-modal">
+
+        <div class="confirm-icon">
+            🗑
+        </div>
+
+        <h2>Delete Chat?</h2>
+
+        <p>
+            This action cannot be undone.
+        </p>
+
+        <div class="confirm-actions">
+
+            <button
+                id="cancelDeleteBtn"
+                class="secondary-btn"
+            >
+                Cancel
+            </button>
+
+            <button
+                id="confirmDeleteBtn"
+                class="danger-btn"
+            >
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
