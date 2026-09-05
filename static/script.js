@@ -53,6 +53,14 @@ const fontDecreaseBtn =
 const fontSizeValue =
     document.getElementById("fontSizeValue");
 
+const exportChatsBtn =
+    document.getElementById("exportChatsBtn");
+
+const importChatsBtn =
+    document.getElementById("importChatsBtn");
+
+const importChatsInput =
+    document.getElementById("importChatsInput");
 
 
 const deleteModal =
@@ -512,15 +520,168 @@ function enhanceCodeBlocks(container) {
 // Save Chats to Local Storage ************************
 function saveChats() {
 
+    const chatData =
+        JSON.stringify(chats);
+
     localStorage.setItem(
         "norvalis_chats",
-        JSON.stringify(chats)
+        chatData
     );
+
     localStorage.setItem(
         "norvalis_current_chat",
         currentChatId
     );
 
+    localStorage.setItem(
+        "norvalis_chats_backup",
+        chatData
+    );
+
+}
+
+// Export All Chats ************************
+function exportAllChats() {
+
+    const backup = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        chats: chats
+    };
+
+    const json =
+        JSON.stringify(
+            backup,
+            null,
+            2
+        );
+
+    const blob =
+        new Blob(
+            [json],
+            {
+                type: "application/json"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    const date =
+        new Date()
+            .toISOString()
+            .slice(0, 10);
+
+    a.download =
+        `norvalis-chat-backup-${date}-${Date.now()}.json`;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+
+    showToast("All chats exported");
+}
+
+// Import All Chats ************************
+function importAllChats(file) {
+
+    if (!file) return;
+
+    const reader =
+        new FileReader();
+
+    reader.onload = (event) => {
+
+        try {
+
+            const backup =
+                JSON.parse(
+                    event.target.result
+                );
+
+            if (
+                !backup ||
+                !Array.isArray(backup.chats)
+            ) {
+
+                throw new Error(
+                    "Invalid Norvalis backup file."
+                );
+            }
+
+            const confirmed =
+                confirm(
+                    "Importing this backup will replace your current chat history. Continue?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            chats =
+                backup.chats;
+
+            chats.forEach(chat => {
+
+                if (
+                    chat.isPinned === undefined
+                ) {
+                    chat.isPinned = false;
+                }
+
+            });
+
+            currentChatId =
+                chats.length > 0
+                    ? chats[0].id
+                    : null;
+
+            saveChats();
+
+            renderChatList();
+
+            if (currentChatId) {
+
+                loadChat(
+                    currentChatId
+                );
+
+            } else {
+
+                startNewChat();
+
+            }
+
+            showToast(
+                "Chat history imported"
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "Import failed:",
+                error
+            );
+
+            alert(
+                "This is not a valid Norvalis chat backup."
+            );
+
+        }
+
+    };
+
+    reader.readAsText(file);
 }
 
 // Get Current Chat by ID ************************
@@ -815,15 +976,44 @@ function loadChats() {
 
 
     const saved =
+    localStorage.getItem(
+        "norvalis_chats"
+    );
+
+    const backup =
         localStorage.getItem(
-            "norvalis_chats"
+            "norvalis_chats_backup"
         );
 
     if (!saved) {
 
-        createChat();
+        if (backup) {
 
-        return;
+            console.warn(
+                "Norvalis: Primary chat storage missing. Restoring from backup."
+            );
+
+            localStorage.setItem(
+                "norvalis_chats",
+                backup
+            );
+
+            chats =
+                JSON.parse(backup);
+
+        } else {
+
+            createChat();
+
+            return;
+        }
+
+    }
+    else {
+
+        chats =
+            JSON.parse(saved);
+
     }
 
     chats = JSON.parse(saved);
@@ -3549,6 +3739,36 @@ fontDecreaseBtn.addEventListener(
             fontScale + "%";
 
         saveFontScale();
+    }
+);
+
+// Chat Data Controls ************************
+
+exportChatsBtn.addEventListener(
+    "click",
+    exportAllChats
+);
+
+importChatsBtn.addEventListener(
+    "click",
+    () => {
+
+        importChatsInput.click();
+
+    }
+);
+
+importChatsInput.addEventListener(
+    "change",
+    (event) => {
+
+        const file =
+            event.target.files[0];
+
+        importAllChats(file);
+
+        event.target.value = "";
+
     }
 );
 
