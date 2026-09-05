@@ -220,6 +220,7 @@
 
     <div class="settings-content">
 
+        <!-- Settings Header -->
         <div class="settings-header">
 
             <h2>Settings</h2>
@@ -230,26 +231,216 @@
 
         </div>
 
+
+        <!-- Appearance -->
         <div class="settings-section">
 
-            <h3>Theme</h3>
+            <h3>Appearance</h3>
 
-            <button id="themeToggleBtn">
-                🌙 Dark Mode
-            </button>
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Theme</strong>
+
+                    <span>
+                        Choose how Norvalis AI looks.
+                    </span>
+
+                </div>
+
+                <button id="themeToggleBtn" class="setting-control">
+                    🌙 Dark
+                </button>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Font Size</strong>
+
+                    <span>
+                        Adjust the size of chat text.
+                    </span>
+
+                </div>
+
+                <div class="font-controls">
+
+                    <button id="fontDecreaseBtn">
+                        −
+                    </button>
+
+                    <span id="fontSizeValue">
+                        100%
+                    </span>
+
+                    <button id="fontIncreaseBtn">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
+
+
+        <!-- Chat -->
+        <div class="settings-section">
+
+            <h3>Chat</h3>
+
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Enter to send</strong>
+
+                    <span>
+                        Press Enter to send a message.
+                        Shift + Enter creates a new line.
+                    </span>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="enterToSendToggle"
+                        checked
+                    >
+
+                    <span class="switch-slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Show timestamps</strong>
+
+                    <span>
+                        Show the time when messages were sent.
+                    </span>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="timestampsToggle"
+                        checked
+                    >
+
+                    <span class="switch-slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Auto-generate chat titles</strong>
+
+                    <span>
+                        Automatically create titles for new conversations.
+                    </span>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="autoTitleToggle"
+                        checked
+                    >
+
+                    <span class="switch-slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div class="setting-info">
+
+                    <strong>Remember chats on this device</strong>
+
+                    <span>
+                        Keep your conversations saved in this browser.
+                    </span>
+
+                </div>
+
+                <label class="settings-switch">
+
+                    <input
+                        type="checkbox"
+                        id="rememberChatsToggle"
+                        checked
+                    >
+
+                    <span class="switch-slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- Chat Data -->
         <div class="settings-section">
 
             <h3>Chat Data</h3>
 
-            <button id="exportChatsBtn">
-                Export All Chats
-            </button>
+            <div class="settings-description">
 
-            <button id="importChatsBtn">
-                Import Chat History
-            </button>
+                <strong>Your conversations are stored locally.</strong>
+
+                <p>
+                    Chats are saved on this browser and device.
+                    Clearing browser or site data may remove them.
+                    Export your chats to keep a backup.
+                </p>
+
+            </div>
+
+
+            <div class="settings-actions">
+
+                <button
+                    id="exportChatsBtn"
+                    class="settings-action-btn"
+                >
+                    Export All Chats
+                </button>
+
+                <button
+                    id="importChatsBtn"
+                    class="settings-action-btn"
+                >
+                    Import Chat History
+                </button>
+
+            </div>
+
 
             <input
                 type="file"
@@ -258,47 +449,39 @@
                 style="display: none;"
             >
 
-            <p>
-                Keep a backup of your conversations
-                and restore them anytime.
-            </p>
+
+            <button
+                id="clearAllChatsBtn"
+                class="settings-danger-btn"
+            >
+                Clear All Chat Data
+            </button>
 
         </div>
 
-        <div class="settings-section">
 
-            <h3>Font Size</h3>
-
-            <div class="font-controls">
-
-                <button id="fontDecreaseBtn">
-                    −
-                </button>
-
-                <span id="fontSizeValue">
-                    100%
-                </span>
-
-                <button id="fontIncreaseBtn">
-                    +
-                </button>
-
-            </div>
-
-        </div>
-
+        <!-- About -->
         <div class="settings-section">
 
             <h3>About</h3>
 
-            <p>
-                Norvalis AI
-                <br>
-                Version 1.0
-                <br>
-                Built with Flask, Gemini,
-                HTML, CSS and JavaScript.
-            </p>
+            <div class="about-info">
+
+                <strong>Norvalis AI</strong>
+
+                <span>
+                    Version 1.0.0
+                </span>
+
+                <p>
+                    Your private AI workspace.
+                </p>
+
+                <span class="about-tech">
+                    Built with Flask · Gemini · HTML · CSS · JavaScript
+                </span>
+
+            </div>
 
         </div>
 
