@@ -2010,7 +2010,9 @@ textarea::-webkit-scrollbar-thumb {
 
 .font-controls button,
 #themeToggleBtn,
-#closeSettingsBtn {
+#closeSettingsBtn,
+#exportChatsBtn,
+#importChatsBtn {
 
     background: var(--bg-secondary);
 
