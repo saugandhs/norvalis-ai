@@ -247,7 +247,7 @@ body {
 
     background: var(--chat-item-bg-active);
 
-    border-color: rgba(139,156,246,.18)
+    border-color: rgba(139,156,246,.18);
 
     box-shadow:
         inset 2px 0 0 var(--accent);
