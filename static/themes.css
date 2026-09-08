@@ -21,7 +21,7 @@ body.theme-dark {
     --bg-primary: #0b1020;
     --bg-secondary: #111827;
     --bg-tertiary: #1b2437;
-    --bg-input: #3a304e;
+    --bg-input: #18233A;
 
     --font-color-primary: white;
     --font-color-secondary: #f1eff9;
@@ -30,12 +30,12 @@ body.theme-dark {
     --chat-container-bg:
         radial-gradient(
             circle at top right,
-            rgba(99,102,241,.18),
+            rgba(139,156,246,.14),
             transparent 35%
         ),
         radial-gradient(
             circle at bottom left,
-            rgba(99,102,241,.08),
+            rgba(196,181,253,.06),
             transparent 40%
         ),
         var(--bg-primary);
@@ -46,19 +46,19 @@ body.theme-dark {
     --card-bg: #172033;
     --sidebar-bg: #0b1020;
 
-    --accent: #6366f1;
-    --accent-hover: #7c7ff7;
+    --accent: #8B9CF6;
+    --accent-hover: #A5B4FC;
 
-    --chat-item-bg-active: rgba(99,102,241,.15);
+    --chat-item-bg-active: rgba(139,156,246,.12);
     --chat-item-bg-hover: #1b2437;
 
     --delete-chat-text: #f87171;
 
-    --newchat-gradient-start: #4f46e5;
-    --newchat-gradient-end: #7c3aed;
+    --newchat-gradient-start: #7184D8;
+    --newchat-gradient-end: #8B9CF6;
 
-    --usermsg-gradient-start: #6366f1;
-    --usermsg-gradient-end: #8b5cf6;
+    --usermsg-gradient-start: #7184D8;
+    --usermsg-gradient-end: #8B9CF6;
 
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;

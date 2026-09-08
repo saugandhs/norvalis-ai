@@ -105,10 +105,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(139,156,246,.12);
 
-    background: rgba(99,102,241,.15);
-
-    border: 1px solid rgba(99,102,241,.3);
+    border: 1px solid rgba(139,156,246,.25);
 }
 
 .logo h2 {
@@ -248,7 +247,7 @@ body {
 
     background: var(--chat-item-bg-active);
 
-    border-color: rgba(99,102,241,.18);
+    border-color: rgba(139,156,246,.18)
 
     box-shadow:
         inset 2px 0 0 var(--accent);
@@ -267,7 +266,7 @@ body {
 
     background: var(--chat-item-bg-active);
 
-    border-color: rgba(99,102,241,.18);
+    border-color: rgba(139,156,246,.18)
 }
 
 
@@ -1406,10 +1405,10 @@ body {
 
 .chat-input:focus-within {
 
-    border-color: rgba(99,102,241,.4);
+    border-color: rgba(139,156,246,.4);
 
     box-shadow:
-        0 0 0 4px rgba(99,102,241,.08);
+        0 0 0 4px rgba(139,156,246,.08);
 }
 
 
@@ -1425,8 +1424,8 @@ body {
 
     background: linear-gradient(
         135deg,
-        #5b5cf0,
-        #7c5cff
+        #7184D8,
+        #8B9CF6
     );
 
     color: white;
@@ -1442,8 +1441,7 @@ body {
 .send-btn:hover {
 
     transform: translateY(-1px);
-
-    box-shadow: 0 6px 16px rgba(124,92,255,.20);
+    box-shadow: 0 6px 16px rgba(139,156,246,.20);
 }
 
 .send-btn:disabled {
@@ -1564,9 +1562,8 @@ textarea::-webkit-scrollbar-thumb {
 
     transform: translateY(-2px);
 
-    border-color: rgba(99,102,241,.4);
-
-    background: rgba(99,102,241,.08);
+    border-color: rgba(139,156,246,.35);
+    background: rgba(139,156,246,.07);
 }
 
 
