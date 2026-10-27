@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Request, jsonify, Response, request, stream_with_context
+from flask import Flask, render_template, jsonify, Response, request, stream_with_context
 from dotenv import load_dotenv
 import json
 import os
@@ -14,7 +14,7 @@ api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 app = Flask(__name__)
-
+model_name = "gemini-3.1-flash-lite"
 
 @app.route("/")
 def home():
@@ -24,6 +24,21 @@ def home():
 def test():
     return "Flask is working"
 
+
+
+def build_conversation_text(history):
+    """Convert chat history into a Gemini prompt."""
+    conversation_text = ""
+
+    for message in history:
+        role = message.get("role")
+
+        if role == "user":
+            conversation_text += f"User: {message.get('content')}\n"
+        elif role == "assistant":
+            conversation_text += f"Assistant: {message.get('raw')}\n"
+
+    return conversation_text + "Assistant:"
 
 
 
@@ -36,28 +51,11 @@ def chat():
     history = data.get("history", [])
 
     try:
-        conversation_text = ""
+        conversation_text = build_conversation_text(history)
 
-        for message in history:
-
-            role = message.get("role")
-            if role == "user":
-                content = message.get("content")
-                conversation_text += f"User: {content}\n"
-                
-            elif role == "assistant":
-                content = message.get("raw")
-                conversation_text += f"Assistant: {content}\n"
-
-
-
-        conversation_text += "Assistant:"
-        
-        
         
         response = client.models.generate_content(
-            #model="gemini-2.5-flash",
-            model = "gemini-3.1-flash-lite",
+            model = model_name,
             contents=conversation_text
         )
 
@@ -92,23 +90,8 @@ def chat_stream():
 
     history = data.get("history", [])
 
-    conversation_text = ""
+    conversation_text = build_conversation_text(history)
 
-    for message in history:
-
-        role = message.get("role")
-
-        if role == "user":
-            conversation_text += (
-                f"User: {message.get('content')}\n"
-            )
-
-        elif role == "assistant":
-            conversation_text += (
-                f"Assistant: {message.get('raw')}\n"
-            )
-
-    conversation_text += "Assistant:"
 
     def generate():
 
@@ -117,7 +100,7 @@ def chat_stream():
         try:
 
             stream = client.models.generate_content_stream(
-                model="gemini-3.1-flash-lite",
+                model=model_name,
                 contents=conversation_text
             )
 
@@ -181,7 +164,7 @@ Message:
 """
 
     response = client.models.generate_content(
-        model="gemini-3.1-flash-lite",
+        model=model_name,
         contents=prompt
     )
 
@@ -192,4 +175,3 @@ Message:
 
 if __name__ == "__main__":
     app.run(debug=True)
-
