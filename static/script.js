@@ -2699,8 +2699,24 @@ function autoResizeTextarea() {
 input.addEventListener("input", autoResizeTextarea);
 
 
+function formatMessageTimestamp(timestamp) {
+    const date = new Date(timestamp);
+
+    return date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    }) + " " +
+    date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+}
+
+
 // Create and Display Message in Chat ************************
-function createMessage(text, type, messageIndex = null, rawText = null) {
+function createMessage(text, type, messageIndex = null, rawText = null, timestampValue = null) {
 
     const message = document.createElement("div");
 
@@ -2737,15 +2753,12 @@ function createMessage(text, type, messageIndex = null, rawText = null) {
 
 
 
+    const messageTimestamp =
+        timestampValue || new Date().toISOString();
+
     const timestamp = document.createElement("div");
-
     timestamp.classList.add("message-time");
-
-    timestamp.textContent =
-    new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-    });
+    timestamp.textContent = formatMessageTimestamp(messageTimestamp);
 
 
 
@@ -2895,9 +2908,6 @@ else if (type === "ai") {
 }
 
             
-
-
-
 
     message.appendChild(timestamp);
 

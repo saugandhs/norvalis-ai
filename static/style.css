@@ -662,7 +662,7 @@ body {
 #chatMessages {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 14px;
     width: 100%;
 }
 
@@ -734,7 +734,7 @@ body {
     background: rgba(255,255,255,.025);
     border: 1px solid var(--border);
     color: var(--text-primary);
-    padding: 24px 26px;
+    padding: 20px 22px;
     border-radius: 18px;
     box-shadow:
         0 6px 20px rgba(0,0,0,.12);
