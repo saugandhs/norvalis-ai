@@ -1025,7 +1025,15 @@ function loadChats() {
             chat.isPinned = false;
         }
 
+        chat.messages.forEach(message => {
+            if (!message.timestamp) {
+                message.timestamp = new Date().toISOString();
+            }
+        });
+
     });
+
+    saveChats();
 
     const savedCurrentChat =
         localStorage.getItem(

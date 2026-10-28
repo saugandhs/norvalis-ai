@@ -700,6 +700,25 @@ body {
     opacity: 0.7;
 }
 
+/* Hide timestamps until the message is hovered */
+.message-time {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Reveal timestamp on hover or keyboard focus */
+.chat-message:hover .message-time,
+.chat-message:focus-within .message-time {
+    opacity: 0.7;
+}
+
+/* Keep timestamps accessible on touchscreens */
+@media (hover: none) {
+    .message-time {
+        opacity: 0.7;
+    }
+}
+
 .ai-message .message-time {
     text-align: left;
     opacity: 0.55;
