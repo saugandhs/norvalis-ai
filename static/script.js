@@ -1094,7 +1094,9 @@ function loadChat(chatId) {
             createMessage(
                 message.content,
                 "user",
-                index   
+                index,
+                null,
+                message.timestamp 
             );
 
         } else {
@@ -1103,7 +1105,8 @@ function loadChat(chatId) {
                 message.html,
                 "ai",
                 index,
-                message.raw
+                message.raw,
+                message.timestamp
             );
 
         }
@@ -3011,10 +3014,14 @@ async function sendMessage() {
     const messageIndex =
         currentChat.messages.length;
 
+    const messageTimestamp = new Date().toISOString();
+
     createMessage(
         text,
         "user",
-        messageIndex
+        messageIndex,
+        null,
+        messageTimestamp
     );
 
     requestAnimationFrame(() => {
@@ -3028,7 +3035,8 @@ async function sendMessage() {
 
     currentChat.messages.push({
         role: "user",
-        content: text
+        content: text,
+        timestamp: messageTimestamp
     });
 
 
@@ -3218,10 +3226,20 @@ while (true) {
 
             console.log(data.full_text);
 
+            const messageTimestamp = new Date().toISOString();
+
+            const timestampElement = document.createElement("div");
+            timestampElement.classList.add("message-time");
+            timestampElement.textContent =
+                formatMessageTimestamp(messageTimestamp);
+
+            streamMessage.message.appendChild(timestampElement);
+
             currentChat.messages.push({
                 role: "assistant",
                 raw: data.full_text,
-                html: html
+                html: html,
+                timestamp: messageTimestamp
             });
 
             saveChats();
