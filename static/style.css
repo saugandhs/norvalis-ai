@@ -318,7 +318,6 @@ body {
     width: 100%;
     border: none;
     background: transparent;
-    /*color: white;*/
     color: var(--font-color-primary);
     padding: 10px 12px;
     text-align: left;
@@ -412,6 +411,7 @@ body {
     cursor: pointer;
     margin-right: 4px;
     transition: all .2s ease;
+    display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
@@ -455,10 +455,6 @@ body {
 }
 
 .chat-header-content {
-    width: min(
-        var(--content-width),
-        calc(100% - 40px)
-    );
     margin: 0 auto;
     display: flex;
     position: relative;
@@ -625,27 +621,15 @@ body {
 }
 
 .messages-inner {
-    width: 90%;
     max-width: var(--content-width);
     margin: 0 auto;
-
 }
 
-.empty-state {
-    min-height: calc(100vh - 250px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px;
-}
 
 .chat-input-container {
     position: absolute;
     /*how high?*/
     bottom: 20px;
-   /* width: 100%;*/
     left: 0;
     right: 0;
     display: flex;
@@ -1061,6 +1045,7 @@ textarea::-webkit-scrollbar-thumb {
 ========================= */
 
 .empty-state {
+    min-height: calc(100vh - 250px);
     flex: 1;
     width: 100%;
     max-width: var(--content-width);
